@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Любимая красотка ❤️</title>
+<style>
+  :root { --wine: #7a1e2c; --paper: #f6ece0; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #3a0f17, #1a0508);
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #intro {
+    text-align: center;
+    padding: 24px 16px;
+    transition: opacity .6s ease;
+  }
+  #intro h1 { font-weight: normal; font-size: 2rem; margin: 0 0 12px; }
+  #intro p { opacity: .85; margin: 0 0 32px; }
+  .heart {
+    font-size: 4rem;
+    display: inline-block;
+    animation: beat 1.2s infinite;
+    margin-bottom: 16px;
+  }
+  @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+  button {
+    background: var(--paper);
+    color: var(--wine);
+    border: none;
+    border-radius: 999px;
+    padding: 14px 32px;
+    font: inherit;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .4);
+  }
+  #card {
+    display: none;
+    width: 100%;
+    max-width: 720px;
+    padding: 16px;
+    opacity: 0;
+    transform: scale(.95);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  #card.open { opacity: 1; transform: scale(1); }
+  #card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .6);
+  }
+</style>
+</head>
+<body>
+  <div id="intro">
+    <div class="heart">❤️</div>
+    <h1>Любимая красотка</h1>
+    <p>Для тебя есть один маленький секрет…</p>
+    <button id="open">Открыть сюрприз</button>
+  </div>
+  <div id="card">
+    <img src="postcard.jpg" alt="Открытка: собирайся — нас ждёт Москва!">
+  </div>
+<script>
+  document.getElementById('open').addEventListener('click', function () {
+    var intro = document.getElementById('intro');
+    var card = document.getElementById('card');
+    intro.style.opacity = 0;
+    setTimeout(function () {
+      intro.style.display = 'none';
+      card.style.display = 'block';
+      requestAnimationFrame(function () { card.classList.add('open'); });
+    }, 600);
+  });
+</script>
+</body>
+</html>
